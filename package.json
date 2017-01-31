@@ -1,0 +1,25 @@
+{
+  "name": "rem.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "now": {
+    "alias": "rem.io",
+    "env": {
+      "JSONBIN_TOKEN": "@jsonbin_token"
+    }
+  },
+  "scripts": {
+    "now-start": "NODE_ENV=production node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "inline-log": "^1.0.5",
+    "request": "^2.79.0"
+  }
+}
