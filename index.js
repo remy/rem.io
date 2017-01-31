@@ -15,7 +15,8 @@ function get(file) {
       url: `https://jsonbin.org/remy/urls/${file}`,
       headers: {
         authorization: `token ${process.env.JSONBIN_TOKEN}`
-      }
+      },
+      json: true,
     }, (err, res, body) => {
       if (err) {
         return reject(err);
