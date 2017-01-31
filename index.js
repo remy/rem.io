@@ -9,8 +9,6 @@ const app = express();
 
 dotenv.config({ silent: true });
 
-console.log(process.env.JSONBIN_TOKEN);
-
 function get(file) {
   return new Promise((resolve, reject) => {
     request({
