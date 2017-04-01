@@ -26,7 +26,20 @@ function get(file) {
         return reject(new Error(res.statusCode));
       }
 
-      resolve(body.trim());
+      const result = {
+        url: '',
+        status: '',
+      };
+
+      if (typeof body === 'string') {
+        result.url = body.trim();
+        result.status = 302;
+      } else {
+        result.status = 200;
+        result.body = `<!doctype html><title>${body.title}</title><meta name="description" content="${body.description}"><link rel="shortcut icon" href="${body.favicon}"><meta http-equiv="refresh" content="0;${body.redirect}">`;
+      }
+
+      resolve(result);
     });
   });
 }
@@ -49,9 +62,13 @@ app.get('/*', (req, res) => {
 
   if (file && cache[file] === undefined) {
     // one off readsync - quick and dirty
-    return get(file).then(url => {
-      cache[file] = url;
-      res.redirect(302, cache[file]);
+    return get(file).then(result => {
+      cache[file] = result;
+      if (result.status === 302) {
+        res.redirect(302, cache[file]);
+      } else {
+        res.status(result.status).send(result.body);
+      }
     }).catch(e => {
       console.log('failed ' + req.url);
       console.log(e.message);
@@ -60,7 +77,10 @@ app.get('/*', (req, res) => {
   }
 
   if (cache[file]) {
-    return res.redirect(302, cache[file]);
+    if (cache[file].status === 302) {
+      return res.redirect(302, cache[file]);
+    }
+    return res.status(200).send(cache[file].body);
   }
 
   res.sendStatus(404);
