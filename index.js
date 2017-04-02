@@ -65,7 +65,7 @@ app.get('/*', (req, res) => {
     return get(file).then(result => {
       cache[file] = result;
       if (result.status === 302) {
-        res.redirect(302, cache[file]);
+        res.redirect(302, cache[file].url);
       } else {
         res.status(result.status).send(result.body);
       }
@@ -78,7 +78,7 @@ app.get('/*', (req, res) => {
 
   if (cache[file]) {
     if (cache[file].status === 302) {
-      return res.redirect(302, cache[file]);
+      return res.redirect(302, cache[file].url);
     }
     return res.status(200).send(cache[file].body);
   }
