@@ -33,6 +33,6 @@ request(
       .map(([short, url]) => `/${short}${' '.repeat(5)}${url}`)
       .join('\n');
 
-    write('./_redirects', redirects, noop);
+    write('./public/_redirects', redirects, noop);
   }
 );
