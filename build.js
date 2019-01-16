@@ -33,8 +33,6 @@ request(
       .map(([short, url]) => `/${short}${' '.repeat(5)}${url}`)
       .join('\n');
 
-    redirects += `\n/img/RHdwwEfTO5 https://cldup.com/RHdwwEfTO5.png 200\n`;
-
     write('./public/_redirects', redirects);
   }
 );
