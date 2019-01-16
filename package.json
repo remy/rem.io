@@ -1,7 +1,6 @@
 {
   "name": "rem.io",
-  "version": "1.0.0",
-  "description": "",
+  "description": "My link shortening site",
   "main": "index.js",
   "now": {
     "alias": "rem.io",
@@ -13,13 +12,13 @@
     "now-start": "NODE_ENV=production node index.js",
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Remy Sharp",
+  "license": "MIT",
+  "engines": {
+    "node": "10"
+  },
   "dependencies": {
-    "dotenv": "^2.0.0",
-    "express": "^4.14.0",
-    "inline-log": "^1.0.5",
+    "@remy/envy": "^4.0.2",
     "request": "^2.79.0"
   }
 }
