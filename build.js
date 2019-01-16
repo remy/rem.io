@@ -21,7 +21,7 @@ request(
     json: true,
   },
   (error, res, body) => {
-    const redirects = Object.entries(body)
+    let redirects = Object.entries(body)
       .filter(([short, target]) => {
         if (typeof target === 'string') {
           return true;
@@ -33,6 +33,8 @@ request(
       .map(([short, url]) => `/${short}${' '.repeat(5)}${url}`)
       .join('\n');
 
-    write('./public/_redirects', redirects, noop);
+    redirects += `\n/img/RHdwwEfTO5 https://cldup.com/RHdwwEfTO5.png 200\n`;
+
+    write('./public/_redirects', redirects);
   }
 );
