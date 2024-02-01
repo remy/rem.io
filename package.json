@@ -15,10 +15,9 @@
   "author": "Remy Sharp",
   "license": "MIT",
   "engines": {
-    "node": "10"
+    "node": "20"
   },
   "dependencies": {
-    "@remy/envy": "^4.0.2",
-    "request": "^2.79.0"
+    "@remy/envy": "^4.0.2"
   }
 }
